@@ -7,9 +7,13 @@ use App\Models\IncomeCategory;
 
 class IncomeCategoryController extends Controller
 {
-    public function index()
+        public function index()
     {
-        return IncomeCategory::orderBy('created_at', 'asc')->get();
+        $income_categories = \DB::select('
+            SELECT * 
+            FROM income_categories');
+
+        return $income_categories;;
     }
 
     public function create()
@@ -19,18 +23,21 @@ class IncomeCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required'
-        ]);
-        $incomecategory = new IncomeCategory;
-        $incomecategory->title = $request->input('title');
-        $incomecategory->save();
-        return $incomecategory;
+       $income_categories = \DB::insert('
+            INSERT INTO income_categories (id, title) 
+            VALUES (?, ?)',  [$request->id, $request->title]);
+
+        return $income_categories;
     }
 
     public function show($id)
     {
-        return IncomeCategory::findorFail($id);
+         $income_categories = \DB::select('
+            SELECT * 
+            FROM income_categories
+            WHERE id = :id', ['id' => $id]);
+
+        return $income_categories;
     }
 
     public function edit($id)
@@ -40,20 +47,19 @@ class IncomeCategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title' =>'required',
-        ]);
-        $incomecategory = IncomeCategory::findorFail($id);
-        $incomecategory->title = $request->input('title');
-        $incomecategory->save();
-        return $incomecategory;
+         $title = $request->title;
+        $income_categories = \DB::update('
+            UPDATE income_categories 
+            SET title = :title 
+            WHERE id = :id', ['id'=>$id,'title'=> $title]);
+
+        return $income_categories;
     }
 
     public function destroy($id)
     {
-        $incomecategory = IncomeCategory::findorFail($id);
-        if($incomecategory->delete()){
-            return 'deleted successfully';
-        }
+        \DB::delete('
+        DELETE FROM income_categories
+        WHERE id = :id', ['id'=>$id]);
     }
 }

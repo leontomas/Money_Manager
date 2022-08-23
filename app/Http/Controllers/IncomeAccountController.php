@@ -9,7 +9,11 @@ class IncomeAccountController extends Controller
 {
     public function index()
     {
-        return IncomeAccount::orderBy('created_at', 'asc')->get();
+        $income_accounts = \DB::select('
+            SELECT * 
+            FROM income_accounts');
+
+        return $income_accounts;;
     }
 
     public function create()
@@ -19,18 +23,21 @@ class IncomeAccountController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required'
-        ]);
-        $incomeaccount = new IncomeAccount;
-        $incomeaccount->title = $request->input('title');
-        $incomeaccount->save();
-        return $incomeaccount;
+       $income_accounts = \DB::insert('
+            INSERT INTO income_accounts (id, title) 
+            VALUES (?, ?)',  [$request->id, $request->title]);
+
+        return $income_accounts;
     }
 
     public function show($id)
     {
-        return IncomeAccount::findorFail($id);
+         $income_accounts = \DB::select('
+            SELECT * 
+            FROM income_accounts
+            WHERE id = :id', ['id' => $id]);
+
+        return $income_accounts;
     }
 
     public function edit($id)
@@ -40,20 +47,19 @@ class IncomeAccountController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title' =>'required',
-        ]);
-        $incomeaccount = IncomeAccount::findorFail($id);
-        $incomeaccount->title = $request->input('title');
-        $incomeaccount->save();
-        return $incomeaccount;
+         $title = $request->title;
+        $income_accounts = \DB::update('
+            UPDATE income_accounts 
+            SET title = :title 
+            WHERE id = :id', ['id'=>$id,'title'=> $title]);
+
+        return $income_accounts;
     }
 
     public function destroy($id)
     {
-        $incomeaccount = IncomeAccount::findorFail($id);
-        if($incomeaccount->delete()){
-            return 'deleted successfully';
-        }
+        \DB::delete('
+        DELETE FROM income_accounts
+        WHERE id = :id', ['id'=>$id]);
     }
 }
