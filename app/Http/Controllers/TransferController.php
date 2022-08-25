@@ -6,79 +6,96 @@ use Illuminate\Http\Request;
 
 class TransferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function index(){
+    // GET (ALL) - READ
+        $transfers = \DB::select('
+            SELECT * 
+            FROM transfers
+            ');
+
+        return $transfers;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+    public function create(){
         //
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+    //POST - CREATE
+        $transfers = \DB::insert('
+            INSERT INTO transfers(
+                id, 
+                created_at,
+                transfer_accounts_id, 
+                transfer_categories_id,
+                 amount,   
+                 note, 
+                 description)
+            VALUES(?,?,?,?,?,?,?)',[
+                $request->id, 
+                $request->created_at,
+                $request->transfer_accounts_id,
+                $request->transfer_categories_id,
+                $request->amount,
+                $request->note,
+                $request->description
+            ]);
+
+        return $transfers;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function show($id){
+    // GET (1) - READ         
+        $transfers = \DB::select('
+            SELECT * 
+            -- transfers.created_at, transfer_accounts.title, transfer_categories.title, amount, note, description 
+            FROM transfers 
+            -- INNER JOIN transfer_accounts ON transfers.transfer_accounts_id = transfer_accounts.id 
+            -- INNER JOIN transfer_categories ON transfers.transfer_categories_id = transfer_categories.id
+            WHERE transfers.id = :id', ['id' => $id]);
+
+        return $transfers;
+    } 
+
+    public function edit($id){
+    //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function update(Request $request, $id){
+    // PUT - UPDATE
+
+        $transfer_accounts_id = $request->transfer_accounts_id;
+        $transfer_categories_id = $request->transfer_categories_id;
+        $amount = $request->amount;
+        $note = $request->note;
+        $description = $request->description;
+        $transfers = \DB::update('
+            UPDATE transfers
+            SET 
+                transfer_accounts_id = :transfer_accounts_id, 
+                transfer_categories_id = :transfer_categories_id,
+                amount = :amount,   
+                note = :note, 
+                description = :description
+            WHERE id = :id', 
+            [  'id'=>$id, 
+                'transfer_accounts_id'=>$transfer_accounts_id,
+                'transfer_categories_id'=>$transfer_categories_id,
+                'amount'=>$amount,
+                'note'=>$note,
+                'description'=>$description
+            ]);
+        return $transfers;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    public function destroy($id){
+    //DELETE
+        \DB::delete('
+        DELETE FROM transfers
+        WHERE id = :id', ['id'=>$id]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        // return back()->with('success', 'PostDeleted!');
     }
 }

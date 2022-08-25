@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->date('created_at');
             $table->bigInteger('expense_accounts_id');
             $table->bigInteger('expense_categories_id');
             $table->decimal('amount');
             $table->string('note');
             $table->string('description');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

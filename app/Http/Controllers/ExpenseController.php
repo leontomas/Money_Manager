@@ -13,7 +13,8 @@ class ExpenseController extends Controller
             -- expenses.created_at, expense_accounts.title, expense_categories.title, amount, note, description 
             FROM expenses 
             -- JOIN expense_accounts ON expenses.expense_accounts_id = expense_accounts.id 
-            -- JOIN expense_categories ON expenses.expense_categories_id = expense_categories.id');
+            -- JOIN expense_categories ON expenses.expense_categories_id = expense_categories.id'
+        );
 
         return $expenses;
     }
