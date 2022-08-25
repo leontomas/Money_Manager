@@ -15,6 +15,11 @@ use App\Http\Controllers\IncomeCategoryController;
 use App\Http\Controllers\TransferFromAccountController;
 use App\Http\Controllers\TransferToAccountController;
 
+// 
+use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\TransferController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,3 +46,8 @@ Route::resource('incomecategory', IncomeCategoryController::class);
 // 
 Route::resource('from', TransferFromAccountController::class);
 Route::resource('to', TransferToAccountController::class);
+
+// 
+Route::resource('expenses', ExpenseController::class);
+Route::resource('incomes', IncomeController::class);
+Route::resource('transfers', TransferController::class);
