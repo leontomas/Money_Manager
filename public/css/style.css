@@ -1,0 +1,120 @@
+body p, a, h1, h2, h3, h4, h5 {
+	font-family: 'Roboto Mono', monospace;
+	text-align: center;
+}
+
+/*Floating Action Button*/
+#floating-button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #db4437;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.plus {
+  color: white;
+  position: absolute;
+  top: 0;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  line-height: 55px;
+  font-size: 38px;
+  font-family: "Roboto";
+  font-weight: 300;
+  animation: plus-out 0.3s;
+  transition: all 0.3s;
+}
+
+/*navigation bar*/
+.topnav {
+  position: relative;
+  background-color: #FFFEF2;
+  overflow: hidden;
+  padding: 9px 0px 6px 0px;
+  flex-wrap: nowrap;
+  /*border: solid;*/
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  /*float: left;*/
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #FFFEF2;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #FFFEF2;
+  color: #000000;
+}
+
+/* Centered section inside the top navigation */
+.topnav-centered a {
+  float: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+  float: right;
+}
+.div-color {
+  background-color: #FFFEF2;
+  padding: 6px 0px 4px 0px;
+}
+
+.div-border {
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: #000000;
+  border-width: 1px;
+  padding: 9px 0px 6px 0px;
+ }
+
+/* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+@media screen and (max-width: 600px) {
+  .topnav a, .topnav-right {
+    float: none;
+    display: block;
+  }
+
+  .topnav-centered a {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+
+.container {
+  display: d-flex;
+  flex-flow: row nowrap;
+  /*flex-direction: row;*/
+  /*flex-wrap: nowrap;*/
+  justify-content: space-evenly;
+  align-items: center;
+  /*align-content: flex-start;*/
+  /*gap: 10px 20px;*/
+
+}
