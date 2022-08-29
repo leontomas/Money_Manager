@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\IncomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+/*Route::get('/', function () {
+    // get data from db
+    return view('welcome', [
+        'incometotal' => 'Total Income', 
+        'totalExpense' => 'Total Expense', 
+        'total' => 'Total']);
+});*/
+
+Route::get('/', function() {
+    $incomes = DB::table('incomes')->get();
+    return view('welcome',['income' =>  $incomes]);
 });
+
+/*Route::get('/', function() {
+    return view('welcome');
+});*/

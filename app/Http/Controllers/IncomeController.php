@@ -16,11 +16,6 @@ class IncomeController extends Controller
         return $incomes;
     }
 
-    public function create(){
-        //
-
-    }
-
     public function store(Request $request){
     //POST - CREATE
         $incomes = \DB::insert('
@@ -58,11 +53,6 @@ class IncomeController extends Controller
         return $incomes;
     } 
 
-    public function edit($id){
-    //
-
-    }
-
     public function update(Request $request, $id){
     // PUT - UPDATE
 
@@ -97,5 +87,21 @@ class IncomeController extends Controller
         WHERE id = :id', ['id'=>$id]);
 
         // return back()->with('success', 'PostDeleted!');
+    }
+
+ // public function total(){
+ //        $incomes = \DB::select('
+ //            SELECT SUM(amount) 
+ //            FROM incomes');
+
+ //        return view('welcome')->with('incometotal',"incomes");
+ //    }
+
+    public function total(){
+        $incomes = \DB::select('
+            SELECT SUM(amount) 
+            FROM incomes');
+
+        return view('welcome', ['incomes'=>$incomes]);
     }
 }

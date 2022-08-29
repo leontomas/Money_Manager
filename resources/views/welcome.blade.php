@@ -41,45 +41,55 @@
                 {{-- Month --}}
                 <div class="d-flex justify-content-center  div-color">
                     <div class="flex-grow-1">
-                        <i class="fa-solid fa-angle-left"></i>
+                        <a href="#home" ><i class="fa-solid fa-angle-left"></i></a>
                     </div>
                     <div class="flex-grow-1">
                         <a href="#home" >Month</a>
                     </div>
                     <div class="flex-grow-1">
-                        <i class="fa-solid fa-angle-right"></i>
+                        <a href="#home" ><i class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
                 
                 {{-- Day - Calendar - Weekly - Monthly -Total --}}
                 <div class="d-flex justify-content-center div-color">
                     <div class="col-sm">
-                        <p class="text-center">Daily</p>
+                        <a href="#home" ><p class="text-center">Daily</p></a>
                     </div>
                     <div class="col-sm">
-                        <p class="text-center">Calendar</p>
+                        <a href="#home" ><p class="text-center">Calendar</p></a>
                     </div>
                     <div class="col-sm">
-                        <p class="text-center">Weekly</p>
+                        <a href="#home" ><p class="text-center">Weekly</p></a>
                     </div>
                     <div class="col-sm">
-                        <p class="text-center">Monthly</p>
+                        <a href="#home" ><p class="text-center">Monthly</p></a>
                     </div>
                     <div class="col-sm">
-                        <p class="text-center">Total</p>
+                        <a href="#home" ><p class="text-center">Total</p></a>
                     </div>
                 </div>
 
                 {{-- Income - Expenses - Total --}}
                 <div class="d-flex justify-content-center div-border div-color">
                     <div class="col-sm">
-                        <p class="text-center">Income</p>
+                        <a href="#home" ><p class="text-center">Income</p></a>
+
+                        @foreach($incomes as $income)
+
+                        <p>{{ $income->amount }}</p>
+                        
+                        @endforeach
+
                     </div>
                     <div class="col-sm">
-                        <p class="text-center">Expense</p>
+                         <a href="#home" ><p class="text-center">Expense</p></a>
+                         <p>{{ $totalExpense }}</p>
+
                     </div>
                     <div class="col-sm">
-                        <p class="text-center">Total</p>
+                         <a href="#home" ><p class="text-center">Total</p></a>
+                        <p>{{ $total }}</p>
                     </div>
                 </div>
             {{-- fab --}}
