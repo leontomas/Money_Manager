@@ -14,6 +14,13 @@ use App\Http\Controllers\IncomeController;
 |
 */
 
+Route::get('/', function() {
+    $incomes = DB::table('incomes')->sum('amount');
+    $expenses = DB::table('expenses')->sum('amount');
+    $total = ($incomes - $expenses);
+    return view('welcome',compact('incomes', 'expenses', 'total'));
+});
+
 /*Route::get('/', function () {
     // get data from db
     return view('welcome', [
@@ -22,10 +29,6 @@ use App\Http\Controllers\IncomeController;
         'total' => 'Total']);
 });*/
 
-Route::get('/', function() {
-    $incomes = DB::table('incomes')->get();
-    return view('welcome',['income' =>  $incomes]);
-});
 
 /*Route::get('/', function() {
     return view('welcome');

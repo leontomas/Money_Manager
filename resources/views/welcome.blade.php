@@ -75,16 +75,12 @@
                     <div class="col-sm">
                         <a href="#home" ><p class="text-center">Income</p></a>
 
-                        @foreach($incomes as $income)
-
-                        <p>{{ $income->amount }}</p>
-                        
-                        @endforeach
+                        <p>{{ $incomes}}</p>
 
                     </div>
                     <div class="col-sm">
                          <a href="#home" ><p class="text-center">Expense</p></a>
-                         <p>{{ $totalExpense }}</p>
+                         <p>{{ $expenses }}</p>
 
                     </div>
                     <div class="col-sm">
@@ -97,6 +93,8 @@
                 <p class="plus">+</p>
             </div>
         </div>   
+
+        Put foreach here
             
 
     </body>
