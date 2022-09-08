@@ -21,6 +21,8 @@ Route::get('/', function() {
     return view('welcome',compact('incomes', 'expenses', 'total'));
 });
 
+
+Route::get('/', [IncomeController::class, 'total']);
 /*Route::get('/', function () {
     // get data from db
     return view('welcome', [

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class IncomeController extends Controller
+class SummaryTotalController extends Controller
 {
     public function index(){
     // GET (ALL) - READ
@@ -94,16 +94,14 @@ class IncomeController extends Controller
  //            SELECT SUM(amount) 
  //            FROM incomes');
 
- //        return view('welcome')->with('incometotal',"incomes");
+ //        return view('welcome',  ['total' => $incomes]);
  //    }
 
     public function total(){
-
         $incomes = \DB::select('
-            SELECT SUM(amount) as amount
-            FROM incomes'); 
-    
+            SELECT SUM(amount) 
+            FROM incomes');
 
-        return view('welcome', ['income'=>$incomes[0]->amount]);
+        return view('welcome', ['incomes'=>$incomes]);
     }
 }

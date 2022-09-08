@@ -49,5 +49,5 @@ Route::resource('to', TransferToAccountController::class);
 
 // 
 Route::resource('expenses', ExpenseController::class);
-Route::resource('incomes', IncomeController::class);
+//Route::resource('incomes', IncomeController::class);
 Route::resource('transfers', TransferController::class);
