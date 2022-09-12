@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Notes
+// Add use for for "use Illuminate\Support\Facades\DB"
+
 class IncomeController extends Controller
 {
     public function index(){
@@ -18,7 +21,7 @@ class IncomeController extends Controller
 
     public function store(Request $request){
     //POST - CREATE
-        $incomes = \DB::insert('
+            $incomes = \DB::insert('
             INSERT INTO incomes(
                 id, 
                 created_at,
@@ -28,7 +31,6 @@ class IncomeController extends Controller
                  note, 
                  description)
             VALUES(?,?,?,?,?,?,?)',[
-                $request->id, 
                 $request->created_at,
                 $request->income_accounts_id,
                 $request->income_categories_id,
@@ -41,6 +43,8 @@ class IncomeController extends Controller
     }
 
     public function show($id){
+
+
     // GET (1) - READ         
         $incomes = \DB::select('
             SELECT * 
@@ -89,21 +93,21 @@ class IncomeController extends Controller
         // return back()->with('success', 'PostDeleted!');
     }
 
- // public function total(){
+ // public function incometotal(){
  //        $incomes = \DB::select('
  //            SELECT SUM(amount) 
  //            FROM incomes');
 
- //        return view('welcome')->with('incometotal',"incomes");
+ //        return view('welcome',['income'=>$incomes[0]->amount]);
  //    }
 
-    public function total(){
-
-        $incomes = \DB::select('
-            SELECT SUM(amount) as amount
-            FROM incomes'); 
+    // public function total(){
+    //     $incomes = \DB::select('
+    //         SELECT SUM(amount) as amount
+    //         FROM incomes'); 
     
 
-        return view('welcome', ['income'=>$incomes[0]->amount]);
-    }
+    //     return view('welcome', ['income'=>$incomes[0]->amount]);
+    // }
+
 }

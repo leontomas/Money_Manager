@@ -67,31 +67,34 @@
                     <div class="col-sm">
                         <a href="#home" ><p class="text-center">Monthly</p></a>
                     </div> 
-                     <div class="col-sm">
-                        <a href="#home" ><p class="text-center">{{ $income}}</p></a>
-                    </div>
-                   
+                    <div class="col-sm">
+                        <a href="#home" ><p class="text-center">Summary</p></a>
+                    </div> 
                 </div>
 
                 {{-- Income - Expenses - Total --}}
-            {{--     <div class="d-flex justify-content-center div-border div-color">
+                <div class="d-flex justify-content-center div-border div-color">
                     <div class="col-sm">
                         <a href="#home" ><p class="text-center">Income</p></a>
-
-                        <p>{{ $incomes}}</p>
-
+                        <p class="text-center">{{ $incomes }}</p>
                     </div>
                     <div class="col-sm">
                          <a href="#home" ><p class="text-center">Expense</p></a>
-                         <p>{{ $expenses }}</p>
+                         <p class="text-center">{{ $expenses  }}</p>
+
 
                     </div>
                     <div class="col-sm">
                          <a href="#home" ><p class="text-center">Total</p></a>
-                        <p>{{ $total }}</p>
+                        <p class="text-center">{{ $total }}</p>
                     </div>
-                </div> --}}
+                </div>
+
             {{-- fab --}}
+
+
+
+
             <div id="floating-button">
                 <p class="plus">+</p>
             </div>
